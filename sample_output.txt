@@ -1,0 +1,14 @@
+--- Scenario 1 ---
+Average waiting time: 4.23 min
+Max queue length: 18
+Bus utilization: 0.89
+
+--- Scenario 2 ---
+Average waiting time: 2.71 min
+Max queue length: 11
+Bus utilization: 0.82
+
+--- Scenario 3 ---
+Average waiting time: 2.12 min
+Max queue length: 9
+Bus utilization: 0.75
