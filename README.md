@@ -1,70 +1,59 @@
-# 🚌 Multi-Bus Queue Simulation
+# 🚌 Multi-Bus Queue Simulation (Colab Edition)
 
 ### 👤 Author
 **Biswajit (2025)**
 
 ---
 
-### 🎯 Overview
-This project simulates a **university shuttle system** using **discrete-event simulation**.  
-Students arrive randomly, buses come at fixed intervals, and each bus has limited capacity.
-
-It calculates:
-- Average waiting time per student
-- Maximum queue length
-- Leftover students
-- Bus seat utilization
+## 🎯 Overview
+This project demonstrates a **simulation + animation** of a university shuttle system using **Python in Google Colab**.  
+It visually represents how students queue for a bus, how the bus arrives, boards up to capacity, and departs — all within a short 3–4 second MP4 video.
 
 ---
 
-### ⚙️ Features
-✅ Event-driven simulation  
-✅ Adjustable parameters  
-✅ Multiple scenario comparison  
-✅ Simple Python implementation (works on Google Colab)
+## ⚙️ Features
+- Simulates **bus movement** and **student queueing**
+- Implements **simple math** for arrivals, boarding, and departures  
+- Generates a **3–4 second MP4 animation** in real time  
+- Fully runnable on **Google Colab**
 
 ---
 
-### 🧮 Example Parameters
-
-| Parameter | Description | Example |
-|------------|--------------|----------|
-| `sim_time` | Total run time (minutes) | 120 |
-| `mean_interarrival` | Avg time between student arrivals | 1.5 |
-| `bus_interval` | Time between bus arrivals | 10 |
-| `bus_capacity` | Number of seats per bus | 30 |
-
----
-
-### 📊 Sample Output
-```
---- Scenario 1 ---
-Simulation time: 120
-Bus interval: 10
-Bus capacity: 30
-Total arrivals: 85
-Total served: 80
-Leftover: 5
-Average waiting time: 4.2 min
-Bus utilization: 0.89
-```
+## 🧠 Core Logic
+| Concept | Description |
+|----------|--------------|
+| **Entity** | Student |
+| **Resource** | Bus |
+| **Queue Discipline** | FCFS (First-Come, First-Served) |
+| **Capacity** | 5 students per bus |
+| **Events** | Arrival → Boarding → Departure |
 
 ---
 
-### 🧰 How to Run
-#### 🔹 Option 1: Google Colab
-1. Open [Google Colab](https://colab.research.google.com/)
-2. Upload `main.py`
-3. Run all cells
-
-#### 🔹 Option 2: Local (VS Code / Terminal)
-```bash
-git clone https://github.com/<your-username>/multi-bus-queue-simulation.git
-cd multi-bus-queue-simulation
-python main.py
-```
+## 📜 How It Works
+1. A queue of 12 students waits for the bus.  
+2. The bus enters the scene, boards up to 5 students (its capacity).  
+3. Remaining students stay in the queue.  
+4. The bus exits while showing live stats (time, queue length, boarded count).  
 
 ---
 
-### 📜 License
-MIT License © 2025 Biswajit
+## 🧮 Mathematical Logic
+- **Bus position (x)** is interpolated using a normalized timeline `t ∈ [0, 1]`.  
+- **Boarding rate:**  
+  \[
+  \text{Boarded} = \min(C, \lfloor P_{\text{board}} \times (C+1)\rfloor)
+  \]
+  where \( P_{\text{board}} \) is progress between arrival and departure.  
+- **Queue size:**  
+  \[
+  Q = \max(0, \text{Total} - \text{Boarded})
+  \]
+
+---
+
+## 🧰 Run on Google Colab
+
+### Step 1. Install dependencies
+```python
+!pip install imageio imageio-ffmpeg matplotlib --quiet
